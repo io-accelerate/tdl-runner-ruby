@@ -4,3 +4,5 @@ out
 Gemfile.lock
 coverage
 challenges/*.txt
+record/localstore
+config/credentials.config
