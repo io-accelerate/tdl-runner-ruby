@@ -1,6 +1,7 @@
 
 require_relative '../lib/runner/client_runner'
 require_relative '../lib/runner/runner_action'
+require_relative '../lib/runner/credentials_config_file'
 
 include RunnerActions
 
@@ -43,6 +44,6 @@ include RunnerActions
 #                                      After you fix the problem, you should deploy a new version into production.
 #
 start_client(ARGV,
-             email='your_email_here',
+             email=read_from_config_file(:tdl_username),
              hostname='run.befaster.io',
              action_if_no_args=test_connectivity)
