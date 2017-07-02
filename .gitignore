@@ -1,0 +1,6 @@
+.idea
+pkg
+out
+Gemfile.lock
+coverage
+challenges/*.txt
