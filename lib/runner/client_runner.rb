@@ -13,12 +13,12 @@ include RunnerActions
 
 # ~~~~~~~~~ Setup ~~~~~~~~~
 
-def start_client(argv, email, hostname, action_if_no_args)
+def start_client(argv, username, hostname, action_if_no_args)
   value_from_argv = extract_action_from(argv)
   runner_action = value_from_argv !=  nil ? value_from_argv : action_if_no_args
   puts("Chosen action is: #{runner_action.name}")
 
-  client = TDL::Client.new(hostname: hostname, unique_id: email)
+  client = TDL::Client.new(hostname: hostname, unique_id: username)
 
   rules = TDL::ProcessingRules.new
   rules.on('display_description').call(method(:display_and_save_description)).then(publish)

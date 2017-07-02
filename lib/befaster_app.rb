@@ -44,6 +44,6 @@ include RunnerActions
 #                                      After you fix the problem, you should deploy a new version into production.
 #
 start_client(ARGV,
-             email=read_from_config_file(:tdl_username),
+             username=read_from_config_file(:tdl_username),
              hostname='run.befaster.io',
              action_if_no_args=test_connectivity)
