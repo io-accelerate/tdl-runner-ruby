@@ -6,27 +6,6 @@ require_relative '../lib/runner/credentials_config_file'
 include RunnerActions
 
 #
-# ~~~~~~~~~~ The workflow ~~~~~~~~~~~~~
-#
-#   +------+-----------------------------------------+-----------------------------------------------+
-#   | Step |          IDE                            |         Web console                           |
-#   +------+-----------------------------------------+-----------------------------------------------+
-#   |  1.  |                                         | Open your browser and go to:                  |
-#   |      |                                         |    http://run.befaster.io:8111                |
-#   |  2.  |                                         | Configure your email                          |
-#   |  3.  |                                         | Start a challenge, should display "Started"   |
-#   |  4.  | Set the email variable                  |                                               |
-#   |  5.  | Run "get_new_round_description"         |                                               |
-#   |  6.  | Read description from ./challenges      |                                               |
-#   |  7.  | Implement the required method in        |                                               |
-#   |      |   ./lib/solutions                       |                                               |
-#   |  8.  | Run "test_connectivity", observe output |                                               |
-#   |  9.  | If ready, run "deploy_to_production"    |                                               |
-#   | 10.  |                                         | Type "done"                                   |
-#   | 11.  |                                         | Check failed requests                         |
-#   | 12.  |                                         | Go to step 5.                                 |
-#   +------+-----------------------------------------+-----------------------------------------------+
-#
 # ~~~~~~~~~~ Running the system: ~~~~~~~~~~~~~
 #
 #   From command line:
@@ -42,6 +21,27 @@ include RunnerActions
 #        * deploy_to_production      - Release your code. Real requests will be used to test your solution.
 #                                      If your solution is wrong you get a penalty of 10 minutes.
 #                                      After you fix the problem, you should deploy a new version into production.
+#
+#   To run your unit tests locally:
+#      rake test
+#
+# ~~~~~~~~~~ The workflow ~~~~~~~~~~~~~
+#
+#   +------+-----------------------------------------+-----------------------------------------------+
+#   | Step |          IDE                            |         Web console                           |
+#   +------+-----------------------------------------+-----------------------------------------------+
+#   |  1.  |                                         | Start a challenge, should display "Started"   |
+#   |  2.  | Run "get_new_round_description"         |                                               |
+#   |  3.  | Read description from ./challenges      |                                               |
+#   |  4.  | Implement the required method in        |                                               |
+#   |      |   ./lib/solutions                       |                                               |
+#   |  5.  | Run "test_connectivity", observe output |                                               |
+#   |  6.  | If ready, run "deploy_to_production"    |                                               |
+#   |  7.  |                                         | Type "done"                                   |
+#   |  8.  |                                         | Check failed requests                         |
+#   |  9.  |                                         | Go to step 2.                                 |
+#   +------+-----------------------------------------+-----------------------------------------------+
+#
 #
 start_client(ARGV,
              username=read_from_config_file(:tdl_username),
