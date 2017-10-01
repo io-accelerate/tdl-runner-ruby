@@ -1,4 +1,3 @@
-
 CHALLENGES_FOLDER = 'challenges'
 LAST_FETCHED_ROUND_PATH = "#{CHALLENGES_FOLDER}/XR.txt"
 
@@ -22,7 +21,11 @@ module RoundManagement
   end
 
   def get_last_fetched_round
-    File.read(LAST_FETCHED_ROUND_PATH)
+    begin
+      File.read(LAST_FETCHED_ROUND_PATH)
+    rescue StandardError => _
+      'noRound'
+    end
   end
 
 end
