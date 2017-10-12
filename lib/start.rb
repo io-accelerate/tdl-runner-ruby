@@ -1,9 +1,12 @@
-
 require_relative '../lib/runner/client_runner'
 require_relative '../lib/runner/runner_action'
 require_relative '../lib/runner/credentials_config_file'
 
-include RunnerActions
+require_relative '../lib/solutions/sum'
+require_relative '../lib/solutions/hello'
+require_relative '../lib/solutions/fizz_buzz'
+require_relative '../lib/solutions/checkout'
+
 
 #
 # ~~~~~~~~~~ Running the system: ~~~~~~~~~~~~~
@@ -43,7 +46,14 @@ include RunnerActions
 #   +------+-----------------------------------------+-----------------------------------------------+
 #
 #
+# noinspection RubyStringKeysInHashInspection
 start_client(ARGV,
              username=read_from_config_file(:tdl_username),
              hostname='run.befaster.io',
-             action_if_no_args=test_connectivity)
+             action_if_no_args=RunnerActions.test_connectivity,
+             {
+                 'sum' => Sum.new.method(:sum),
+                 'hello' => Hello.new.method(:hello),
+                 'fizz_buzz' => FizzBuzz.new.method(:fizz_buzz),
+                 'checkout' => Checkout.new.method(:checkout),
+             })

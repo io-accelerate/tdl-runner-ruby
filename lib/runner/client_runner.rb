@@ -7,10 +7,6 @@ require_relative '../../lib/runner/runner_action'
 require_relative '../../lib/runner/credentials_config_file'
 require_relative '../../lib/runner/recording_system'
 require_relative '../../lib/runner/round_management'
-require_relative '../../lib/solutions/sum'
-require_relative '../../lib/solutions/hello'
-require_relative '../../lib/solutions/fizz_buzz'
-require_relative '../../lib/solutions/checkout'
 
 include RunnerActions
 include RecordingSystem
@@ -18,7 +14,7 @@ include RoundManagement
 
 # ~~~~~~~~~ Setup ~~~~~~~~~
 
-def start_client(argv, username, hostname, action_if_no_args)
+def start_client(argv, username, hostname, action_if_no_args, solutions)
   unless is_recording_system_ok
     puts('Please run `record_screen_and_upload` before continuing.')
     return
@@ -31,11 +27,15 @@ def start_client(argv, username, hostname, action_if_no_args)
   client = TDL::Client.new(hostname: hostname, unique_id: username)
 
   rules = TDL::ProcessingRules.new
-  rules.on('display_description').call(RoundManagement.method(:display_and_save_description)).then(publish)
-  rules.on('sum').call(Sum.new.method(:sum)).then(runner_action.client_action)
-  rules.on('hello').call(Hello.new.method(:hello)).then(runner_action.client_action)
-  rules.on('fizz_buzz').call(FizzBuzz.new.method(:fizz_buzz)).then(runner_action.client_action)
-  rules.on('checkout').call(Checkout.new.method(:checkout)).then(runner_action.client_action)
+  rules.on('display_description')
+      .call(RoundManagement.method(:display_and_save_description))
+      .then(publish)
+
+  solutions.each do |key, value|
+    rules.on(key)
+        .call(value)
+        .then(runner_action.client_action)
+  end
 
   client.go_live_with(rules)
 
