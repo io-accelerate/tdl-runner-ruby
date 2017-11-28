@@ -50,8 +50,7 @@ def execute_server_action_from_user_input(argv, username, hostname, solutions)
     puts(available_actions)
 
     return if available_actions.include? 'No actions available.'
-
-    user_input = get_user_input(argv).chomp
+    user_input = get_user_input(argv)
     if user_input == 'deploy'
       execute_runner_action(hostname, RunnerActions.deploy_to_production, solutions, username)
     end
@@ -77,7 +76,7 @@ def execute_server_action_from_user_input(argv, username, hostname, solutions)
 end
 
 def get_user_input(args)
-  args.empty? ? gets : args.index(0)
+  args.empty? ? gets.chomp : args[0]
 end
 
 def execute_runner_action_from_args(argv, username, hostname, action_if_no_args, solutions)
