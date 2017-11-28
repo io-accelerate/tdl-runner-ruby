@@ -15,5 +15,5 @@ task :default => :test
 
 desc 'Run the client'
 task :run do
-  sh "ruby -I lib lib/start.rb #{ENV['action']}"
+  sh "ruby -I lib lib/send_command_to_server.rb #{ENV['action']}"
 end
