@@ -49,7 +49,7 @@ require_relative '../lib/solutions/checkout'
 # noinspection RubyStringKeysInHashInspection
 start_client(ARGV,
              username=read_from_config_file(:tdl_username),
-             hostname='run.befaster.io',
+             hostname=read_from_config_file(:tdl_hostname),
              action_if_no_args=RunnerActions.test_connectivity,
              {
                  'sum' => Sum.new.method(:sum),
