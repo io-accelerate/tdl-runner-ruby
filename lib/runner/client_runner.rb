@@ -31,7 +31,8 @@ def start_client(argv, username, hostname, action_if_no_args, solutions)
 end
 
 def extract_action_from(argv)
-  first_arg = args.empty? ? argv[0] : ''
+  first_arg = argv.length > 0 ? argv[0] : ''
+  puts "first_arg = #{first_arg}"
   RunnerActions.all.select { |action| action.name.casecmp(first_arg) == 0 }.first
 end
 
@@ -75,8 +76,8 @@ def execute_server_action_from_user_input(argv, username, hostname, solutions)
   end
 end
 
-def get_user_input(args)
-  args.empty? ? gets.chomp : args[0]
+def get_user_input(argv)
+  argv.empty? ? gets.chomp : argv[0]
 end
 
 def execute_runner_action_from_args(argv, username, hostname, action_if_no_args, solutions)
