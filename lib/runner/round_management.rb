@@ -9,7 +9,7 @@ module RoundManagement
 
     newline_index = raw_description.index("\n")
     round_id = raw_description[0..newline_index - 1]
-    callback.call(round_id) if !round_id == get_last_fetched_round
+    callback.call(round_id) if round_id != get_last_fetched_round
 
     display_and_save_description(round_id, raw_description)
   end
