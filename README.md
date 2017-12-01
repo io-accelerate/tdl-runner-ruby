@@ -9,5 +9,5 @@
 ## 2. How to start
 
 - Install dependencies `bundle install`
-- Open `lib/start.rb`
+- Open `lib/send_command_to_server.rb`
 - Read the comments as documentation, they will guide through the rest of the setup
