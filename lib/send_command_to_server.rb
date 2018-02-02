@@ -48,9 +48,9 @@ include Utils
 runner = TDL::QueueBasedImplementationRunnerBuilder.new()
     .set_config(Utils.get_runner_config)
     .with_solution_for('sum', lambda {|x, y| Sum.new.sum(x, y)})
-    .with_solution_for('hello', ->() {Hello.new.method(:hello)})
-    .with_solution_for('fizz_buzz', ->() {FizzBuzz.new.method(:fizz_buzz)})
-    .with_solution_for('checkout', ->() {Checkout.new.method(:checkout)})
+    .with_solution_for('hello', lambda {Hello.new.hello()})
+    .with_solution_for('fizz_buzz', lambda {|number| FizzBuzz.new.fizz_buzz(number)})
+    .with_solution_for('checkout', lambda {Checkout.new.checkout()})
     .create
 
 TDL::ChallengeSession
@@ -58,13 +58,3 @@ TDL::ChallengeSession
     .with_config(Utils.get_config)
     .with_action_provider(UserInputAction.new(ARGV))
     .start
-# start_client(ARGV,
-#              username=read_from_config_file(:tdl_username),
-#              hostname=read_from_config_file(:tdl_hostname),
-#              action_if_no_args=RunnerActions.test_connectivity,
-#              {
-#                  'sum' => Sum.new.method(:sum),
-#                  'hello' => Hello.new.method(:hello),
-#                  'fizz_buzz' => FizzBuzz.new.method(:fizz_buzz),
-#                  'checkout' => Checkout.new.method(:checkout),
-#              })
