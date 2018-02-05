@@ -47,10 +47,10 @@ include Utils
 # noinspection RubyStringKeysInHashInspection
 runner = TDL::QueueBasedImplementationRunnerBuilder.new()
     .set_config(Utils.get_runner_config)
-    .with_solution_for('sum', lambda {|x, y| Sum.new.sum(x, y)})
-    .with_solution_for('hello', lambda {Hello.new.hello()})
-    .with_solution_for('fizz_buzz', lambda {|number| FizzBuzz.new.fizz_buzz(number)})
-    .with_solution_for('checkout', lambda {Checkout.new.checkout()})
+    .with_solution_for('sum', lambda {|p| Sum.new.sum(p[0], p[1])})
+    .with_solution_for('hello', lambda {|p| Hello.new.hello(p[0])})
+    .with_solution_for('fizz_buzz', lambda {|p| FizzBuzz.new.fizz_buzz(p[0])})
+    .with_solution_for('checkout', lambda {|p| Checkout.new.checkout(p[0])})
     .create
 
 TDL::ChallengeSession
