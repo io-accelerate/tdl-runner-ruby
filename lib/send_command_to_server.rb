@@ -1,12 +1,8 @@
-require_relative '../lib/runner/client_runner'
-require_relative '../lib/runner/runner_action'
-require_relative '../lib/runner/credentials_config_file'
+require 'tdl'
+require_relative './runner/user_input_action'
+require_relative './runner/utils'
 
-require_relative '../lib/solutions/sum'
-require_relative '../lib/solutions/hello'
-require_relative '../lib/solutions/fizz_buzz'
-require_relative '../lib/solutions/checkout'
-
+include Utils
 
 #
 # ~~~~~~~~~~ Running the system: ~~~~~~~~~~~~~
@@ -49,13 +45,16 @@ require_relative '../lib/solutions/checkout'
 #
 #
 # noinspection RubyStringKeysInHashInspection
-start_client(ARGV,
-             username=read_from_config_file(:tdl_username),
-             hostname=read_from_config_file(:tdl_hostname),
-             action_if_no_args=RunnerActions.test_connectivity,
-             {
-                 'sum' => Sum.new.method(:sum),
-                 'hello' => Hello.new.method(:hello),
-                 'fizz_buzz' => FizzBuzz.new.method(:fizz_buzz),
-                 'checkout' => Checkout.new.method(:checkout),
-             })
+runner = TDL::QueueBasedImplementationRunnerBuilder.new()
+    .set_config(Utils.get_runner_config)
+    .with_solution_for('sum', lambda {|p| Sum.new.sum(p[0], p[1])})
+    .with_solution_for('hello', lambda {|p| Hello.new.hello(p[0])})
+    .with_solution_for('fizz_buzz', lambda {|p| FizzBuzz.new.fizz_buzz(p[0])})
+    .with_solution_for('checkout', lambda {|p| Checkout.new.checkout(p[0])})
+    .create
+
+TDL::ChallengeSession
+    .for_runner(runner)
+    .with_config(Utils.get_config)
+    .with_action_provider(UserInputAction.new(ARGV))
+    .start
