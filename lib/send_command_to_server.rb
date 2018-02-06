@@ -55,7 +55,7 @@ Logging.logger.root.appenders = Logging.appenders.stdout
 #
 # noinspection RubyStringKeysInHashInspection
 
-runner = QueueBasedImplementationRunnerBuilder.new
+runner = TDL::QueueBasedImplementationRunnerBuilder.new
     .set_config(Utils.get_runner_config)
     .with_solution_for('sum', -> (x, y) {Sum.new.sum(x, y)})
     .with_solution_for('hello', -> (p) {Hello.new.hello(p)})
