@@ -2,6 +2,11 @@ require 'tdl'
 require_relative './runner/user_input_action'
 require_relative './runner/utils'
 
+require_relative './solutions/sum'
+require_relative './solutions/hello'
+require_relative './solutions/fizz_buzz'
+require_relative './solutions/checkout'
+
 include Utils
 
 #
@@ -45,12 +50,13 @@ include Utils
 #
 #
 # noinspection RubyStringKeysInHashInspection
-runner = TDL::QueueBasedImplementationRunnerBuilder.new()
+
+runner = QueueBasedImplementationRunnerBuilder2.new
     .set_config(Utils.get_runner_config)
-    .with_solution_for('sum', lambda {|p| Sum.new.sum(p[0], p[1])})
-    .with_solution_for('hello', lambda {|p| Hello.new.hello(p[0])})
-    .with_solution_for('fizz_buzz', lambda {|p| FizzBuzz.new.fizz_buzz(p[0])})
-    .with_solution_for('checkout', lambda {|p| Checkout.new.checkout(p[0])})
+    .with_solution_for('sum', -> (x, y) {Sum.new.sum(x, y)})
+    .with_solution_for('hello', -> (p) {Hello.new.hello(p)})
+    .with_solution_for('fizz_buzz', -> (p) {FizzBuzz.new.fizz_buzz(p)})
+    .with_solution_for('checkout', -> (p) {Checkout.new.checkout(p)})
     .create
 
 TDL::ChallengeSession
