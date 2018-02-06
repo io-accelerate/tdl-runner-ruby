@@ -9,6 +9,10 @@ require_relative './solutions/checkout'
 
 include Utils
 
+require 'logging'
+
+Logging.logger.root.appenders = Logging.appenders.stdout
+
 #
 # ~~~~~~~~~~ Running the system: ~~~~~~~~~~~~~
 #
@@ -51,7 +55,7 @@ include Utils
 #
 # noinspection RubyStringKeysInHashInspection
 
-runner = QueueBasedImplementationRunnerBuilder2.new
+runner = QueueBasedImplementationRunnerBuilder.new
     .set_config(Utils.get_runner_config)
     .with_solution_for('sum', -> (x, y) {Sum.new.sum(x, y)})
     .with_solution_for('hello', -> (p) {Hello.new.hello(p)})
