@@ -14,7 +14,11 @@ end
 
 def unescape(value)
   value.gsub! '\=', '='
-  value
+  if %w(true false).include? value.to_s
+    value.to_s == 'true'
+  else
+    value
+  end
 end
 
 def read_properties_file
