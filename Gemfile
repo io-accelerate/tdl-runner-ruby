@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.2.2'
-gem 'tdl-client-ruby', '0.19.3'
+gem 'tdl-client-ruby', '0.20.4'
 gem 'java-properties', '0.2.0'
 gem 'unirest', '1.1.2'
 
