@@ -1,6 +1,6 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
-require 'solutions/sum'
+require 'solutions/SUM/sum'
 
 require 'minitest/autorun'
 

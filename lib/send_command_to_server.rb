@@ -2,10 +2,10 @@ require 'tdl'
 require_relative './runner/user_input_action'
 require_relative './runner/utils'
 
-require_relative './solutions/sum'
-require_relative './solutions/hello'
-require_relative './solutions/fizz_buzz'
-require_relative './solutions/checkout'
+require_relative './solutions/CHK/checkout'
+require_relative './solutions/FIZ/fizz_buzz'
+require_relative './solutions/HLO/hello'
+require_relative './solutions/SUM/sum'
 
 include Utils
 
