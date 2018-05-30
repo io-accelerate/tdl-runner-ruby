@@ -7,3 +7,5 @@ challenges/*.txt
 record/localstore
 config/credentials.config
 .ruby-version
+coverage
+coverage.tdl
