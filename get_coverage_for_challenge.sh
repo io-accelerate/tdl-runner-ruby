@@ -11,7 +11,9 @@ CHALLENGE_ID=$1
 RUBY_TEST_REPORT_CSV_FILE="${SCRIPT_CURRENT_DIR}/coverage/results.csv"
 RUBY_CODE_COVERAGE_INFO="${SCRIPT_CURRENT_DIR}/coverage.tdl"
 
-( cd ${SCRIPT_CURRENT_DIR} && bundle install && rake test || true 1>&2 )
+( cd ${SCRIPT_CURRENT_DIR} && \
+    $HOME/.rbenv/shims/bundle install && \
+    $HOME/.rbenv/shims/rake test || true 1>&2 )
 
 [ -e ${RUBY_CODE_COVERAGE_INFO} ] && rm ${RUBY_CODE_COVERAGE_INFO}
 
