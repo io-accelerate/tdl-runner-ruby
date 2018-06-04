@@ -18,11 +18,20 @@ RUBY_CODE_COVERAGE_INFO="${SCRIPT_CURRENT_DIR}/coverage.tdl"
 [ -e ${RUBY_CODE_COVERAGE_INFO} ] && rm ${RUBY_CODE_COVERAGE_INFO}
 
 if [ -f "${RUBY_TEST_REPORT_CSV_FILE}" ]; then
+    TOTAL_COVERAGE_PERCENTAGE=$(( 0 ))
+    NUMBER_OF_FILES=$(( 0 ))
+
     COVERAGE_OUTPUT=$(grep ${CHALLENGE_ID} ${RUBY_TEST_REPORT_CSV_FILE} | tr ',' ' ')
-    MISSED=$(echo $COVERAGE_OUTPUT | awk '{print $6}')
-    COVERED=$(echo $COVERAGE_OUTPUT | awk '{print $5}')
-    TOTAL_LINES=$((MISSED + $COVERED))
-    echo $(($COVERED * 100 / $TOTAL_LINES)) > ${RUBY_CODE_COVERAGE_INFO}
+    while read coveragePerFile;
+    do
+        coverageForThisFile=$(echo ${coveragePerFile} | awk '{print $2}')
+        TOTAL_COVERAGE_PERCENTAGE=$(( ${TOTAL_COVERAGE_PERCENTAGE} + ${coverageForThisFile} ))
+        NUMBER_OF_FILES=$(( ${NUMBER_OF_FILES} + 1 ))
+    done <<< ${COVERAGE_OUTPUT}
+
+    AVERAGE_COVERAGE_PERCENTAGE=$(( ${TOTAL_COVERAGE_PERCENTAGE} / ${NUMBER_OF_FILES} ))
+
+    echo $((AVERAGE_COVERAGE_PERCENTAGE)) > ${RUBY_CODE_COVERAGE_INFO}
     cat ${RUBY_CODE_COVERAGE_INFO}
     exit 0
 else
