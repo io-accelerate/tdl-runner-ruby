@@ -12,6 +12,7 @@ RUBY_TEST_REPORT_CSV_FILE="${SCRIPT_CURRENT_DIR}/coverage/results.csv"
 RUBY_CODE_COVERAGE_INFO="${SCRIPT_CURRENT_DIR}/coverage.tdl"
 
 ( cd ${SCRIPT_CURRENT_DIR} && \
+    gem install bundler && \
     bundle install && \
     rake test || true 1>&2 )
 
