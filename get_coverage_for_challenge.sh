@@ -22,7 +22,7 @@ if [ -f "${RUBY_TEST_REPORT_CSV_FILE}" ]; then
     TOTAL_COVERAGE_PERCENTAGE=$(( 0 ))
     NUMBER_OF_FILES=$(( 0 ))
 
-    COVERAGE_OUTPUT=$(grep ${CHALLENGE_ID} ${RUBY_TEST_REPORT_CSV_FILE} | tr ',' ' ')
+    COVERAGE_OUTPUT=$(grep "\/${CHALLENGE_ID}\/" ${RUBY_TEST_REPORT_CSV_FILE} | tr ',' ' ')
     while read coveragePerFile;
     do
         coverageForThisFile=$(echo ${coveragePerFile} | awk '{print $2}')
