@@ -20,20 +20,18 @@ RUBY_CODE_COVERAGE_INFO="${SCRIPT_CURRENT_DIR}/coverage.tdl"
 if [ -f "${RUBY_TEST_REPORT_CSV_FILE}" ]; then
     TOTAL_COVERAGE_PERCENTAGE=$(( 0 ))
     NUMBER_OF_FILES=$(( 0 ))
-    AVERAGE_COVERAGE_PERCENTAGE=$(( 0 ))
 
-    COVERAGE_OUTPUT=$(grep "\/${CHALLENGE_ID}\/" ${RUBY_TEST_REPORT_CSV_FILE} | tr ',' ' ' || true)
+    COVERAGE_OUTPUT=$(grep "solutions\/${CHALLENGE_ID}\/" ${RUBY_TEST_REPORT_CSV_FILE} || true)
+    RELEVANT_LINES_COL=4
+    LINES_COVERED_COL=5
+
     if [[ ! -z "${COVERAGE_OUTPUT}" ]]; then
-        while read coveragePerFile;
-        do
-            coverageForThisFile=$(echo ${coveragePerFile} | awk '{print $2}')
-            TOTAL_COVERAGE_PERCENTAGE=$(( ${TOTAL_COVERAGE_PERCENTAGE} + ${coverageForThisFile} ))
-            NUMBER_OF_FILES=$(( ${NUMBER_OF_FILES} + 1 ))
-        done <<< ${COVERAGE_OUTPUT}
-        AVERAGE_COVERAGE_PERCENTAGE=$(( ${TOTAL_COVERAGE_PERCENTAGE} / ${NUMBER_OF_FILES} ))
+        RELEVANT_LINES=$(echo "${COVERAGE_OUTPUT}" | cut -d "," -f${RELEVANT_LINES_COL} | jq -s 'add')
+        LINES_COVERED=$(echo "${COVERAGE_OUTPUT}" | cut -d "," -f${LINES_COVERED_COL} | jq -s 'add')
+        TOTAL_COVERAGE_PERCENTAGE=$(( (${LINES_COVERED} * 100) / ${RELEVANT_LINES} ))
     fi
 
-    echo $((AVERAGE_COVERAGE_PERCENTAGE)) > ${RUBY_CODE_COVERAGE_INFO}
+    echo $((TOTAL_COVERAGE_PERCENTAGE)) > ${RUBY_CODE_COVERAGE_INFO}
     cat ${RUBY_CODE_COVERAGE_INFO}
     exit 0
 else

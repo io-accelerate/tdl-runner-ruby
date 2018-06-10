@@ -4,6 +4,8 @@ require 'logging'
 
 Logging.logger.root.appenders = Logging.appenders.stdout
 
+require_solution 'SUM'
+
 class ClientTest < Minitest::Test
 
   def test_sum

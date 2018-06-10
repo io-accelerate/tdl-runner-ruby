@@ -6,7 +6,9 @@ SimpleCov.start
 require 'simplecov-csv'
 SimpleCov.formatter = SimpleCov::Formatter::CSVFormatter
 
-require_all File.join(File.dirname(__FILE__), '..', 'lib', 'solutions')
+def require_solution(solution_name)
+  require_all File.join(File.dirname(__FILE__), '..', 'lib', 'solutions', solution_name)
+end
 
 require 'minitest/autorun'
 
