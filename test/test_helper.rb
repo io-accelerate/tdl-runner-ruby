@@ -1,12 +1,12 @@
+require 'require_all'
+
 require 'simplecov'
 SimpleCov.start
 
 require 'simplecov-csv'
 SimpleCov.formatter = SimpleCov::Formatter::CSVFormatter
 
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-
-require 'solutions/SUM/sum'
+require_all File.join(File.dirname(__FILE__), '..', 'lib', 'solutions')
 
 require 'minitest/autorun'
 
