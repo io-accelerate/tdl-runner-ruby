@@ -8,3 +8,4 @@ record/localstore
 config/credentials.config
 coverage
 coverage.tdl
+.DS_Store
