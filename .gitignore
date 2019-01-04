@@ -5,6 +5,8 @@ Gemfile.lock
 coverage
 challenges/*.txt
 record/localstore
+record/bin
+jre
 config/credentials.config
 coverage
 coverage.tdl
