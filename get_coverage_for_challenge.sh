@@ -13,15 +13,16 @@ RUBY_CODE_COVERAGE_INFO="${SCRIPT_CURRENT_DIR}/coverage.tdl"
 
 ( cd ${SCRIPT_CURRENT_DIR} && \
     bundle install && \
-    bundle exec rake test || true 1>&2 )
+    bundle exec rake test 1>&2 )
 
 [ -e ${RUBY_CODE_COVERAGE_INFO} ] && rm ${RUBY_CODE_COVERAGE_INFO}
 
 if [ -f "${RUBY_TEST_REPORT_CSV_FILE}" ]; then
     TOTAL_COVERAGE_PERCENTAGE=$(( 0 ))
+    echo $((TOTAL_COVERAGE_PERCENTAGE)) > ${RUBY_CODE_COVERAGE_INFO}
     NUMBER_OF_FILES=$(( 0 ))
 
-    COVERAGE_OUTPUT=$(grep "solutions\/${CHALLENGE_ID}\/" ${RUBY_TEST_REPORT_CSV_FILE} || true)
+    COVERAGE_OUTPUT=$(grep "solutions\/${CHALLENGE_ID}\/" ${RUBY_TEST_REPORT_CSV_FILE})
     RELEVANT_LINES_COL=4
     LINES_COVERED_COL=5
 
