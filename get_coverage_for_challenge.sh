@@ -13,7 +13,7 @@ RUBY_CODE_COVERAGE_INFO="${SCRIPT_CURRENT_DIR}/coverage.tdl"
 
 ( cd ${SCRIPT_CURRENT_DIR} && \
     bundle install && \
-    bundle exec rake test 1>&2 )
+    bundle exec rake test 1>&2 || true )
 
 [ -e ${RUBY_CODE_COVERAGE_INFO} ] && rm ${RUBY_CODE_COVERAGE_INFO}
 
