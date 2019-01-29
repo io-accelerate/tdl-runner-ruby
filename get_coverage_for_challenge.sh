@@ -11,6 +11,15 @@ CHALLENGE_ID=$1
 RUBY_TEST_REPORT_CSV_FILE="${SCRIPT_CURRENT_DIR}/coverage/results.csv"
 RUBY_CODE_COVERAGE_INFO="${SCRIPT_CURRENT_DIR}/coverage.tdl"
 
+### Guard clause to check for invalid CHALLENGE_ID
+
+if [[ ! -e "${SCRIPT_CURRENT_DIR}/lib/solutions/${CHALLENGE_ID}" ]]; then
+   echo "" > ${RUBY_CODE_COVERAGE_INFO}
+   echo "The provided CHALLENGE_ID: '${CHALLENGE_ID}' isn't valid, aborting process..."
+   exit 1
+fi
+
+
 ( cd ${SCRIPT_CURRENT_DIR} && \
     bundle install && \
     bundle exec rake test || true 1>&2 )
