@@ -23,7 +23,7 @@ Logging.logger.root.appenders = Logging.appenders.stdout
 #      rake run
 #
 #   To run your unit tests locally:
-#      rake test
+#      rake
 #
 # ~~~~~~~~~~ The workflow ~~~~~~~~~~~~~
 #
