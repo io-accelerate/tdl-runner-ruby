@@ -10,6 +10,7 @@ SCRIPT_CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CHALLENGE_ID=$1
 RUBY_TEST_REPORT_CSV_FILE="${SCRIPT_CURRENT_DIR}/coverage/results.csv"
 RUBY_CODE_COVERAGE_INFO="${SCRIPT_CURRENT_DIR}/coverage.tdl"
+RUBY_CODE_COVERAGE_CACHE="${SCRIPT_CURRENT_DIR}/.resultset.json"
 
 exitAfterNoCoverageReportFoundError() {
   echo "No coverage report was found"
@@ -26,9 +27,9 @@ fi
     bundle install && \
     bundle exec rake 1>&2 || true )
 
-[ -e ${RUBY_CODE_COVERAGE_INFO} ] && rm ${RUBY_CODE_COVERAGE_INFO}
+[[ -e "${RUBY_CODE_COVERAGE_INFO}" ]] && rm -f "${RUBY_CODE_COVERAGE_INFO}" && rm -f "${RUBY_CODE_COVERAGE_CACHE}"
 
-if [ -f "${RUBY_TEST_REPORT_CSV_FILE}" ]; then
+if [[ -f "${RUBY_TEST_REPORT_CSV_FILE}" ]]; then
     TOTAL_COVERAGE_PERCENTAGE=$(( 0 ))
     NUMBER_OF_FILES=$(( 0 ))
 
