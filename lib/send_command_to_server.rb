@@ -5,6 +5,8 @@ require_relative './runner/utils'
 require_relative './solutions/CHK/checkout'
 require_relative './solutions/FIZ/fizz_buzz'
 require_relative './solutions/HLO/hello'
+require_relative './solutions/ARRS/array_sum'
+require_relative './solutions/IRNG/int_range'
 require_relative './solutions/SUM/sum'
 
 include Utils
@@ -59,6 +61,8 @@ runner = TDL::QueueBasedImplementationRunnerBuilder.new
     .set_config(Utils.get_runner_config)
     .with_solution_for('sum', -> (x, y) {Sum.new.sum(x, y)})
     .with_solution_for('hello', -> (p) {Hello.new.hello(p)})
+    .with_solution_for('array_sum', -> (p) {ArraySum.new.array_sum(p)})
+    .with_solution_for('int_range', -> (x, y) {IntRange.new.int_range(x, y)})
     .with_solution_for('fizz_buzz', -> (p) {FizzBuzz.new.fizz_buzz(p)})
     .with_solution_for('checkout', -> (p) {Checkout.new.checkout(p)})
     .create
