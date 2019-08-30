@@ -44,7 +44,7 @@ Logging.logger.root.appenders = Logging.appenders.stdout
 #   |  4.  | Locate the file corresponding to your current challenge in:           |
 #   |      |   ./lib/solutions                                                     |
 #   |  5.  | Replace the following placeholder exception with your solution:       |
-#   |      |   "raise 'Not implemented'"                                           |
+#   |      |   raise 'Not implemented'                                             |
 #   |  6.  | Deploy to production by typing "deploy".                              |
 #   |  7.  | Observe the output, check for failed requests.                        |
 #   |  8.  | If passed, go to step 1.                                              |
