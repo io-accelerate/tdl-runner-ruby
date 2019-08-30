@@ -1,13 +1,28 @@
-.idea
+# ~~~~~~~~~ Global ~~~~~~~~~
+
+# Ignore all dot folders
+.*
+
+# Ignore all archives
+*.zip
+*.tar.gz
+*.tar
+*.rar
+
+# ~~~~~~~~~ Language specific ~~~~~~~~~
 pkg
 out
 Gemfile.lock
-coverage
-challenges/*.txt
-record/localstore
-record/bin
-jre
+
+# ~~~~~~~~~ IDE specific ~~~~~~~~~
+
+# Idea
+*.iml
+
+# ~~~~~~~~~ Accelerate ~~~~~~~~~
+**/challenges/*.txt
+record
 config/credentials.config
 coverage
 coverage.tdl
-.DS_Store
+jre

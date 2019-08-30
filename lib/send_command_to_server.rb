@@ -35,18 +35,20 @@ Logging.logger.root.appenders = Logging.appenders.stdout
 #        * You trigger one of the actions by typing it on the console.
 #        * After the action feedback is presented, the execution will stop.
 #
-#   +------+-------------------------------------------------------------+
-#   | Step | The usual workflow                                          |
-#   +------+-------------------------------------------------------------+
-#   |  1.  | Run this file.                                              |
-#   |  2.  | Start a challenge by typing "start".                        |
-#   |  3.  | Read description from the "challenges" folder               |
-#   |  4.  | Implement the required method in                            |
-#   |      |   ./lib/solutions                                           |
-#   |  5.  | Deploy to production by typing "deploy".                    |
-#   |  6.  | Observe output, check for failed requests.                  |
-#   |  7.  | If passed, go to step 3.                                    |
-#   +------+-------------------------------------------------------------+
+#   +------+-----------------------------------------------------------------------+
+#   | Step | The usual workflow                                                    |
+#   +------+-----------------------------------------------------------------------+
+#   |  1.  | Run this file.                                                        |
+#   |  2.  | Start a challenge by typing "start".                                  |
+#   |  3.  | Read the description from the "challenges" folder.                    |
+#   |  4.  | Locate the file corresponding to your current challenge in:           |
+#   |      |   ./lib/solutions                                                     |
+#   |  5.  | Replace the following placeholder exception with your solution:       |
+#   |      |   "raise 'Not implemented'"                                           |
+#   |  6.  | Deploy to production by typing "deploy".                              |
+#   |  7.  | Observe the output, check for failed requests.                        |
+#   |  8.  | If passed, go to step 1.                                              |
+#   +------+-----------------------------------------------------------------------+
 #
 #   You are encouraged to change this project as you please:
 #        * You can use your preferred libraries.
