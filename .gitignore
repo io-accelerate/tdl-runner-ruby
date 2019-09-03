@@ -3,19 +3,9 @@
 # Ignore all dot folders
 .*/
 
-# Ignore all temp files
-~$*
-*~
-
-# Ignore all archives
-*.zip
-*.tar.gz
-*.tar
-*.rar
-
 # ~~~~~~~~~ Language specific ~~~~~~~~~
-pkg
-out
+pkg/
+out/
 Gemfile.lock
 
 # ~~~~~~~~~ IDE specific ~~~~~~~~~
@@ -25,8 +15,8 @@ Gemfile.lock
 
 # ~~~~~~~~~ Accelerate ~~~~~~~~~
 **/challenges/*.txt
-record
+record/
 config/credentials.config
-coverage
+coverage/
 coverage.tdl
-jre
+jre/
