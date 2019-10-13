@@ -3,6 +3,7 @@ require_relative './runner/user_input_action'
 require_relative './runner/utils'
 
 require_relative './solutions/CHK/checkout'
+require_relative './solutions/CHL/checklite'
 require_relative './solutions/FIZ/fizz_buzz'
 require_relative './solutions/HLO/hello'
 require_relative './solutions/ARRS/array_sum'
@@ -67,6 +68,7 @@ runner = TDL::QueueBasedImplementationRunnerBuilder.new
     .with_solution_for('int_range', -> (x, y) {IntRange.new.int_range(x, y)})
     .with_solution_for('fizz_buzz', -> (p) {FizzBuzz.new.fizz_buzz(p)})
     .with_solution_for('checkout', -> (p) {Checkout.new.checkout(p)})
+    .with_solution_for('checklite', -> (p) {Checklite.new.checklite(p)})
     .create
 
 TDL::ChallengeSession
