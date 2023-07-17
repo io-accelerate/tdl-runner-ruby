@@ -3,7 +3,7 @@
 
 ## 1. Requirements
 
-- `Ruby 2.2.2`
+- `Ruby 3.2.2`
 - `bundler`
 
 ## 2. How to start
