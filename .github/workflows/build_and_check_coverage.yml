@@ -1,0 +1,26 @@
+name: Ruby Rake test
+
+on: [push]
+
+jobs:
+  build-and-test:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install xmllint
+        run: sudo apt-get install -y libxml2-utils
+
+      # ~~~~~~~~~~~~~ Ruby setup ~~~~~~~~~~~~~
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
+        with:
+          ruby-version: '3.2.2'
+      - name: Display Ruby version
+        run: ruby --version
+
+        # ~~~~~~~~~~~~~ Run ~~~~~~~~~~~~~
+      - name: Run and compute coverage
+        run: |
+          ./get_coverage_for_challenge.sh TST
+          grep "83" ./coverage.tdl
