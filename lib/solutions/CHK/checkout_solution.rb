@@ -1,7 +1,7 @@
 # noinspection RubyUnusedLocalVariable
-class Checklite
+class CheckoutSolution
 
-  def checklite(skus)
+  def checkout(skus)
     raise 'Not implemented'
   end
 

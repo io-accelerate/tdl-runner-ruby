@@ -1,14 +1,7 @@
 require 'tdl'
 require_relative './runner/user_input_action'
 require_relative './runner/utils'
-
-require_relative './solutions/CHK/checkout'
-require_relative './solutions/CHL/checklite'
-require_relative './solutions/FIZ/fizz_buzz'
-require_relative './solutions/HLO/hello'
-require_relative './solutions/ARRS/array_sum'
-require_relative './solutions/IRNG/int_range'
-require_relative './solutions/SUM/sum'
+require_relative 'entry_point_mapping'
 
 include Utils
 
@@ -60,16 +53,27 @@ Logging.logger.root.appenders = Logging.appenders.stdout
 #
 # noinspection RubyStringKeysInHashInspection
 
+entry_point_mapping = EntryPointMapping.new
+
 runner = TDL::QueueBasedImplementationRunnerBuilder.new
-    .set_config(Utils.get_runner_config)
-    .with_solution_for('sum', -> (x, y) {Sum.new.sum(x, y)})
-    .with_solution_for('hello', -> (p) {Hello.new.hello(p)})
-    .with_solution_for('array_sum', -> (p) {ArraySum.new.array_sum(p)})
-    .with_solution_for('int_range', -> (x, y) {IntRange.new.int_range(x, y)})
-    .with_solution_for('fizz_buzz', -> (p) {FizzBuzz.new.fizz_buzz(p)})
-    .with_solution_for('checkout', -> (p) {Checkout.new.checkout(p)})
-    .with_solution_for('checklite', -> (p) {Checklite.new.checklite(p)})
-    .create
+  .set_config(Utils.get_runner_config)
+  .with_solution_for('sum', entry_point_mapping.method(:sum))
+  .with_solution_for('hello', entry_point_mapping.method(:hello))
+  .with_solution_for('fizz_buzz', entry_point_mapping.method(:fizz_buzz))
+  .with_solution_for('checkout', entry_point_mapping.method(:checkout))
+  .with_solution_for('increment', entry_point_mapping.method(:increment))
+  .with_solution_for('to_uppercase', entry_point_mapping.method(:to_uppercase))
+  .with_solution_for('letter_to_santa', entry_point_mapping.method(:letter_to_santa))
+  .with_solution_for('count_lines', entry_point_mapping.method(:count_lines))
+  .with_solution_for('array_sum', entry_point_mapping.method(:array_sum))
+  .with_solution_for('int_range', entry_point_mapping.method(:int_range))
+  .with_solution_for('filter_pass', entry_point_mapping.method(:filter_pass))
+  .with_solution_for('inventory_add', entry_point_mapping.method(:inventory_add))
+  .with_solution_for('inventory_size', entry_point_mapping.method(:inventory_size))
+  .with_solution_for('inventory_get', entry_point_mapping.method(:inventory_get))
+  .with_solution_for('waves', entry_point_mapping.method(:waves))
+  .create
+
 
 TDL::ChallengeSession
     .for_runner(runner)

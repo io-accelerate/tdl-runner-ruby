@@ -1,7 +1,7 @@
 # noinspection RubyUnusedLocalVariable
-class FizzBuzz
+class HelloSolution
 
-  def fizz_buzz(number)
+  def hello(friend_name)
     raise 'Not implemented'
   end
 

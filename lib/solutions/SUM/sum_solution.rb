@@ -1,7 +1,7 @@
 # noinspection RubyUnusedLocalVariable
-class IntRange
+class SumSolution
 
-  def int_range(start_incl, end_excl)
+  def compute(x, y)
     raise 'Not implemented'
   end
 
