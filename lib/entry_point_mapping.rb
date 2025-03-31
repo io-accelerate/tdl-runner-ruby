@@ -69,7 +69,8 @@ class EntryPointMapping
 
   # Round 3
   def inventory_add(inventory_item_hash, number)
-    item = InventoryItem.new(**inventory_item_hash)
+    symbolized = inventory_item_hash.transform_keys(&:to_sym)
+    item = InventoryItem.new(**symbolized)
     @demo_round3_solution.inventory_add(item, number)
   end
 
@@ -79,7 +80,7 @@ class EntryPointMapping
 
   def inventory_get(*args)
     response = @demo_round3_solution.inventory_get(*args)
-    object_to_hash(response)
+    response.nil? ? nil : object_to_hash(response)
   end
 
   # Round 4 & 5
