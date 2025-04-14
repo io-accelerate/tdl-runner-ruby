@@ -2,6 +2,7 @@ require_relative 'solutions/sum/sum_solution'
 require_relative 'solutions/hlo/hello_solution'
 require_relative 'solutions/fiz/fizz_buzz_solution'
 require_relative 'solutions/chk/checkout_solution'
+require_relative 'solutions/rbt/rabbit_hole_solution'
 require_relative 'solutions/dmo/demo_round1_solution'
 require_relative 'solutions/dmo/demo_round2_solution'
 require_relative 'solutions/dmo/demo_round3_solution'
@@ -14,6 +15,7 @@ class EntryPointMapping
     @hello_solution = HelloSolution.new
     @fizz_buzz_solution = FizzBuzzSolution.new
     @checkout_solution = CheckoutSolution.new
+    @rabbit_hole_solution = RabbitHoleSolution.new
     @demo_round1_solution = DemoRound1Solution.new
     @demo_round2_solution = DemoRound2Solution.new
     @demo_round3_solution = DemoRound3Solution.new
@@ -37,6 +39,10 @@ class EntryPointMapping
     @checkout_solution.checkout(*args)
   end
 
+  def rabbit_hole(*args)
+    @rabbit_hole_solution.rabbit_hole(*args)
+  end
+  
   # Round 1
   def increment(*args)
     @demo_round1_solution.increment(*args)
