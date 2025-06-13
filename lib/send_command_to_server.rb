@@ -62,6 +62,8 @@ runner = TDL::QueueBasedImplementationRunnerBuilder.new
   .with_solution_for('fizz_buzz', entry_point_mapping.method(:fizz_buzz))
   .with_solution_for('checkout', entry_point_mapping.method(:checkout))
   .with_solution_for('rabbit_hole', entry_point_mapping.method(:rabbit_hole))
+  .with_solution_for('amazing_maze', entry_point_mapping.method(:amazing_maze))
+  .with_solution_for('ultimate_maze', entry_point_mapping.method(:ultimate_maze))
   .with_solution_for('increment', entry_point_mapping.method(:increment))
   .with_solution_for('to_uppercase', entry_point_mapping.method(:to_uppercase))
   .with_solution_for('letter_to_santa', entry_point_mapping.method(:letter_to_santa))
