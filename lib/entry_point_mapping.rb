@@ -3,6 +3,7 @@ require_relative 'solutions/hlo/hello_solution'
 require_relative 'solutions/fiz/fizz_buzz_solution'
 require_relative 'solutions/chk/checkout_solution'
 require_relative 'solutions/rbt/rabbit_hole_solution'
+require_relative 'solutions/hoc/house_of_cards_solution'
 require_relative 'solutions/amz/amazing_solution'
 require_relative 'solutions/ult/ultimate_solution'
 require_relative 'solutions/dmo/demo_round1_solution'
@@ -18,6 +19,7 @@ class EntryPointMapping
     @fizz_buzz_solution = FizzBuzzSolution.new
     @checkout_solution = CheckoutSolution.new
     @rabbit_hole_solution = RabbitHoleSolution.new
+    @house_of_cards_solution = HouseOfCardsSolution.new
     @amazing_solution = AmazingSolution.new
     @ultimate_solution = UltimateSolution.new
     @demo_round1_solution = DemoRound1Solution.new
@@ -45,6 +47,10 @@ class EntryPointMapping
 
   def rabbit_hole(*args)
     @rabbit_hole_solution.rabbit_hole(*args)
+  end
+
+  def render_house(*args)
+    @house_of_cards_solution.render_house(*args)
   end
 
   def amazing_maze(*args)
