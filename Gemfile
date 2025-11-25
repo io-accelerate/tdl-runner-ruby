@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '~> 3.4.2'
-gem 'tdl-client-ruby', '0.30.1'
+gem 'tdl-client-ruby', '0.33.1'
 gem 'java-properties', '0.3.0'
 gem 'rspec', '3.13.0'
 
